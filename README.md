@@ -4,3 +4,5 @@ A Web Push backend example. Currently only a nodejs express example is implement
 ## Installation
 Generate your own VAPID keys here: https://vapidkeys.com/ and set them in the environment.
 
+## Running the app
+See [express/README.md](express/README.md) for details.
