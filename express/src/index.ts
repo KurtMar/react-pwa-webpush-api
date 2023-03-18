@@ -24,12 +24,13 @@ const server = app.listen(port, () => {
   console.log(`server started at http://localhost:${port}`);
 });
 
-const exitHandler = () => {
+const exitHandler = async () => {
   // @ts-ignore
   const mongod = global.__MONGOD__ as MongoMemoryServer;
   if (mongod) {
-    mongod.stop({doCleanup: false})
+    await mongod.stop({doCleanup: false})
   }
+  /*
   if (server) {
     server.close(() => {
       console.info('Server closed');
@@ -38,6 +39,7 @@ const exitHandler = () => {
   } else {
     process.exit(1);
   }
+  */
 };
 
 const unexpectedErrorHandler = (error: unknown) => {
@@ -47,10 +49,3 @@ const unexpectedErrorHandler = (error: unknown) => {
 
 process.on('uncaughtException', unexpectedErrorHandler);
 process.on('unhandledRejection', unexpectedErrorHandler);
-
-process.on('SIGTERM', () => {
-  console.info('SIGTERM received');
-  if (server) {
-    server.close();
-  }
-});
