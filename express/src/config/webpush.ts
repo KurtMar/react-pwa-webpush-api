@@ -1,4 +1,6 @@
-import webpush from 'web-push';
+import webpush from 'web-push'
+import * as dotenv from 'dotenv'
+dotenv.config()
 
 const publicVapidKey = process.env.VAPID_PUBLIC_KEY
 const privateVapidKey = process.env.VAPID_PRIVATE_KEY
